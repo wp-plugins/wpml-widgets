@@ -67,7 +67,6 @@ class Wpml_Widgets {
 	public function ww_widget_dropdown( $widget, $form, $instance ) {
 
 		$languages 		= icl_get_languages();
-		$current_value 	= 'all';
 		
 		?><p><label for='wpml_language'><?php _e( 'Display on language:', 'ww' ); ?> </label>
 		<select id='wpml_language' name='wpml_language'><?php
