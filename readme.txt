@@ -12,6 +12,10 @@ WPML Widgets is a simple to use extension to add a language selector dropdown to
 == Description ==
 WPML Widgets is a simple to use extension to add a language selector dropdown to your widgets.
 
+This plugin is the easiest way to add multilingual widgets to your website.
+
+WPML Widgets is a ultra lightweight plugin, so there will be (about) zero extra loading time.
+
 
 == Installation ==
 

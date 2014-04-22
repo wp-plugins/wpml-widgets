@@ -3,7 +3,7 @@
 Plugin Name: WPML Widgets
 Plugin URI: http://www.jeroensormani.com
 Description: Easily select which widgets you want to show for which languages
-Version: 1.0
+Version: 1.0.0
 Author: Jeroen Sormani
 Author URI: http://www.jeroensormani.com
 */
@@ -66,7 +66,7 @@ class Wpml_Widgets {
 	 */
 	public function ww_widget_dropdown( $widget, $form, $instance ) {
 
-		$languages 		= icl_get_languages();
+		$languages = icl_get_languages();
 		
 		?><p><label for='wpml_language'><?php _e( 'Display on language:', 'ww' ); ?> </label>
 		<select id='wpml_language' name='wpml_language'><?php
