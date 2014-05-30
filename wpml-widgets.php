@@ -3,7 +3,7 @@
 Plugin Name: WPML Widgets
 Plugin URI: http://www.jeroensormani.com
 Description: Easily select which widgets you want to show for which languages
-Version: 1.0.0
+Version: 1.0.1
 Author: Jeroen Sormani
 Author URI: http://www.jeroensormani.com
 */
@@ -40,6 +40,8 @@ Author URI: http://www.jeroensormani.com
  *	@author      Jeroen Sormani
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 class Wpml_Widgets {
 	
 	
@@ -47,7 +49,12 @@ class Wpml_Widgets {
 	 * __construct function.
 	 */
 	public function __construct() {
-		
+				
+		// check if WPML is activated
+		if ( ! in_array( 'sitepress-multilingual-cms/sitepress.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) :
+			return;
+		endif;
+			
 		// Add dropdown to widgets
 		add_action( 'in_widget_form', array( $this, 'ww_widget_dropdown' ), 10, 3 );
 		
@@ -68,7 +75,7 @@ class Wpml_Widgets {
 
 		$languages = icl_get_languages();
 		
-		?><p><label for='wpml_language'><?php _e( 'Display on language:', 'ww' ); ?> </label>
+		?><p><label for='wpml_language'><?php _e( 'Display on language:', 'wpml-widgets' ); ?> </label>
 		<select id='wpml_language' name='wpml_language'><?php
 		foreach ( $languages as $language ) :
 
@@ -79,7 +86,7 @@ class Wpml_Widgets {
 		
 		$selected = ( 'all' == $instance['wpml_language'] || !isset( $instance['wpml_language'] ) ) ? 'SELECTED' : null;
 		?>
-			<option <?php echo $selected; ?> value='all'><?php _e( 'All Languages', 'ww' ); ?></option>
+			<option <?php echo $selected; ?> value='all'><?php _e( 'All Languages', 'wpml-widgets' ); ?></option>
 		</select></p>
 		<?php
 
@@ -107,7 +114,7 @@ class Wpml_Widgets {
 	 */
 	public function ww_display_widget( $instance, $widget, $args ) {
 	
-		if ( $instance['wpml_language'] != ICL_LANGUAGE_CODE && isset( $instance['wpml_language'] ) && $instance['wpml_language'] != 'all' ) :
+		if ( isset( $instance['wpml_language'] ) && $instance['wpml_language'] != ICL_LANGUAGE_CODE && $instance['wpml_language'] != 'all' ) :
 			return false;
 		endif;
 		
