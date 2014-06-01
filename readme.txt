@@ -31,6 +31,9 @@ WPML Widgets is a ultra lightweight plugin, so there will be (about) zero extra 
 
 == Changelog ==
 
+= 1.0.2 =
+* Fix - WordPress Multisite supported check
+
 = 1.0.1=
 * Fix - notices in debug mode
 * Fix - Widgets won't break when WPML is not activated

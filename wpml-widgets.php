@@ -3,7 +3,7 @@
 Plugin Name: WPML Widgets
 Plugin URI: http://www.jeroensormani.com
 Description: Easily select which widgets you want to show for which languages
-Version: 1.0.1
+Version: 1.0.2
 Author: Jeroen Sormani
 Author URI: http://www.jeroensormani.com
 */
@@ -51,8 +51,16 @@ class Wpml_Widgets {
 	public function __construct() {
 				
 		// check if WPML is activated
+		
+		if ( ! function_exists( 'is_plugin_active_for_network' ) ) :
+		    require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+		endif;
+
+		
 		if ( ! in_array( 'sitepress-multilingual-cms/sitepress.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) :
-			return;
+			if ( ! is_plugin_active_for_network( 'sitepress-multilingual-cms/sitepress.php' ) ) :
+				return;
+			endif;
 		endif;
 			
 		// Add dropdown to widgets
